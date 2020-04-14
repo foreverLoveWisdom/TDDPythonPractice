@@ -25,7 +25,7 @@ class NewVisitorTest(unittest.TestCase):
         self.assertIn('To-Do', header_text)
         # She types "buy peacock feathers" into a text box
         inputbox = self.browser.find_element_by_id('id_new_item')
-        self.assertEqual(inputbox.get_attributes('placeholder'), 'Enter a to-do item')
+        self.assertEqual(inputbox.get_attribute('placeholder'), 'Enter a to-do item')
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-do list
         # She enters "Use peacock feathres to make a fly"
@@ -35,10 +35,10 @@ class NewVisitorTest(unittest.TestCase):
         time.sleep(1)
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_element_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: Buy peacock feathres' for row in rows))
+        self.assertTrue(any(row.text == '1: Buy peacock feathres' for row in rows), "New to-do item did not appear in table")
         # The page generated a unique URL for her -- There is some explanatory text to that effect.
         # She visits that URL - her to-do list is still there.
-        self.fail('Finish the test!')
+        # self.fail('Finish the test!')
 
 
 if __name__ == "__main__":
